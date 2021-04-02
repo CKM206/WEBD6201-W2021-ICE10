@@ -70,37 +70,7 @@ var core;
         authGuard();
     }
     function displayEdit() {
-        let key = $("body")[0].dataset.contactid;
-        console.log(key);
-        let contact = new core.Contact();
-        if (key != undefined && key != "") {
-            contact.deserialize(localStorage.getItem(key));
-            $("#fullName").val(contact.FullName);
-            $("#contactNumber").val(contact.ContactNumber);
-            $("#emailAddress").val(contact.EmailAddress);
-        }
-        else {
-            $("main>h1").text("Add Contact");
-            $("#editButton").html(`<i class="fas fa-plus-circle fa-lg"></i> Add`);
-        }
         formValidation();
-        $("#editButton").on("click", function () {
-            if (key == "") {
-                key = contact.FullName.substring(0, 1) + Date.now();
-            }
-            contact.FullName = $("#fullName").val().toString();
-            contact.ContactNumber = $("#contactNumber").val().toString();
-            contact.EmailAddress = $("#emailAddress").val().toString();
-            if (contact.serialize()) {
-                localStorage.setItem(key, contact.serialize());
-            }
-            linkData = '';
-            location.href = "/contact-list";
-        });
-        $("#cancelButton").on("click", function () {
-            linkData = '';
-            location.href = '/contact-list';
-        });
     }
     function displayLogin() {
         let messageArea = $("#messageArea");

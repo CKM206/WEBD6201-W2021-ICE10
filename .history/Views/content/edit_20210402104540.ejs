@@ -22,12 +22,8 @@
               name="EmailAddress" value ="<%= contact.EmailAddress %>" required>
             </div>
 
-            <% if (title == "Edit") { %>
-              <button id="editButton" type="submit" class="btn btn-primary"><i class="fas fa-edit fa-lg"></i> Edit</button>
-            <% }else { %>  
-              <button id="addButton" type="submit" class="btn btn-primary"><i class="fas fa-plus-circle fa-lg"></i> Add</button>
-            <% }                      %>
-            <a href="/contact-list" id="cancelButton" type="button" class="btn btn-warning"><i class="fas fa-undo fa-lg"></i> Cancel</a>
+            <button id="editButton" type="button" class="btn btn-primary"><i class="fas fa-edit fa-lg"></i><%= title %></button>
+            <button id="cancelButton" type="button" class="btn btn-warning"><i class="fas fa-undo fa-lg"></i> Cancel</button>
           </form>
         </div>
         

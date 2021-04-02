@@ -107,10 +107,9 @@ router.post('/edit/:id', function(req, res, next)
     "FullName": req.body.FullName,
     "ContactNumber": req.body.ContactNumber,
     "EmailAddress": req.body.EmailAddress
-  });
+  })
 
-  // db.contacts.update({"_id": id....})
-  Contact.updateOne({_id: id}, updatedContact, {}, (err) =>{
+  Contact.updateOne({id: id, updatedContact, {}, (err) =>{
     if (err)
     {
       console.error(err);
@@ -124,31 +123,13 @@ router.post('/edit/:id', function(req, res, next)
 /* GET Add page. */
 router.get('/add', function(req, res, next) 
 {
-  res.render('index', { title: 'Add', page: 'edit', contact: '', user: ''  });
+  res.render('index', { title: 'Add', page: 'edit', user: ''  });
 });
 
 /* POST Add page. */
 router.post('/add', function(req, res, next) 
 {
-
-  // Instantiate New Contact
-  let newContact = new Contact
-  ({
-    "FullName": req.body.FullName,
-    "ContactNumber": req.body.ContactNumber,
-    "EmailAddress": req.body.EmailAddress
-  });
-
-  //db.contacts.create()
-  Contact.create(newContact, (err) => {
-    if (err)
-    {
-      console.error(err);
-      res.end(err);
-    }
-
-    res.redirect('/contact-list');
-  });
+  res.redirect('/contact-list');
 });
 
 /* Process Delete/:id page. */

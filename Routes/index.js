@@ -59,14 +59,53 @@ exports.router.get('/contact-list', function (req, res, next) {
         if (err) {
             return console.error(err);
         }
-        res.render('index', { title: 'Contact List', page: 'contact-list', user: 'admin', contacts: contacts });
+        res.render('index', { title: 'Contact List', page: 'contact-list', user: '', contacts: contacts });
     });
-});
-exports.router.get('/edit', function (req, res, next) {
-    res.render('index', { title: 'Add', page: 'edit', user: 'admin' });
 });
 exports.router.get('/edit/:id', function (req, res, next) {
     let id = req.params.id;
-    res.render('edit', { title: 'Edit', page: 'edit', contactID: id, user: 'admin' });
+    Contact.findById(id, {}, {}, (err, contactToEdit) => {
+        if (err) {
+            console.error(err);
+            res.end(err);
+        }
+        res.render('index', { title: 'Edit', page: 'edit', user: '', contact: contactToEdit });
+    });
+});
+exports.router.post('/edit/:id', function (req, res, next) {
+    let id = req.params.id;
+    let updatedContact = new Contact({
+        "_id": id,
+        "FullName": req.body.FullName,
+        "ContactNumber": req.body.ContactNumber,
+        "EmailAddress": req.body.EmailAddress
+    });
+    Contact.updateOne({ _id: id }, updatedContact, {}, (err) => {
+        if (err) {
+            console.error(err);
+            res.end(err);
+        }
+        res.redirect('/contact-list');
+    });
+});
+exports.router.get('/add', function (req, res, next) {
+    res.render('index', { title: 'Add', page: 'edit', contact: '', user: '' });
+});
+exports.router.post('/add', function (req, res, next) {
+    let newContact = new Contact({
+        "FullName": req.body.FullName,
+        "ContactNumber": req.body.ContactNumber,
+        "EmailAddress": req.body.EmailAddress
+    });
+    Contact.create(newContact, (err) => {
+        if (err) {
+            console.error(err);
+            res.end(err);
+        }
+        res.redirect('/contact-list');
+    });
+});
+exports.router.get('/delete/:id', function (req, res, next) {
+    res.redirect('/contact-list');
 });
 //# sourceMappingURL=index.js.map

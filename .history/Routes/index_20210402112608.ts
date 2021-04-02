@@ -139,7 +139,6 @@ router.post('/add', function(req, res, next)
     "EmailAddress": req.body.EmailAddress
   });
 
-  //db.contacts.create()
   Contact.create(newContact, (err) => {
     if (err)
     {

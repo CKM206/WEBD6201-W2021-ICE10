@@ -139,7 +139,6 @@ router.post('/add', function(req, res, next)
     "EmailAddress": req.body.EmailAddress
   });
 
-  //db.contacts.create()
   Contact.create(newContact, (err) => {
     if (err)
     {
@@ -149,6 +148,7 @@ router.post('/add', function(req, res, next)
 
     res.redirect('/contact-list');
   });
+
 });
 
 /* Process Delete/:id page. */

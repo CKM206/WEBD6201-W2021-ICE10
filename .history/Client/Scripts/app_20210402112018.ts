@@ -189,7 +189,7 @@ namespace core
     //   }
 
     //   // form validation
-       formValidation();
+    //   formValidation();
       
     //  $("#editButton").on("click", function() 
     //  {
@@ -215,17 +215,17 @@ namespace core
     //    // Remove any link data
     //    linkData = '';
     //    location.href = "/contact-list";
-    //  });
+     });
    
 
-      // $("#cancelButton").on("click", function()
-      // {
-      //   // Remove any link data
-      //   linkData = '';
+      $("#cancelButton").on("click", function()
+      {
+        // Remove any link data
+        linkData = '';
         
-      //   // return to the contact list
-      //   location.href = '/contact-list';
-      // });
+        // return to the contact list
+        location.href = '/contact-list';
+      });
   }
 
   function displayLogin(): void

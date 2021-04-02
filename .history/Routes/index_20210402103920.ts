@@ -79,80 +79,14 @@ router.get('/contact-list', function(req, res, next)
 
 });
 
-/* GET Edit page. */
+/* GET Register page. */
 router.get('/edit/:id', function(req, res, next) 
 {
-  let id = req.params.id;
+  res.render('index', { title: 'Edit', page: 'edit', user: ''  });
+});
 
-  Contact.findById(id, {}, {}, (err, contactToEdit) =>{
-    if (err)
-    {
-      console.error(err);
-      res.end(err);
-    }
-  
-    res.render('index', { title: 'Edit', page: 'edit', user: '', contact: contactToEdit });
-  });
-}); 
-
-/* POST Edit page. */
+/* GET Register page. */
 router.post('/edit/:id', function(req, res, next) 
-{
-  let id = req.params.id;
-
-  // Instantiate New Contact
-  let updatedContact = new Contact
-  ({
-    "_id": id,
-    "FullName": req.body.FullName,
-    "ContactNumber": req.body.ContactNumber,
-    "EmailAddress": req.body.EmailAddress
-  });
-
-  // db.contacts.update({"_id": id....})
-  Contact.updateOne({_id: id}, updatedContact, {}, (err) =>{
-    if (err)
-    {
-      console.error(err);
-      res.end(err);
-    }
-
-    res.redirect('/contact-list');
-  });
-});
-
-/* GET Add page. */
-router.get('/add', function(req, res, next) 
-{
-  res.render('index', { title: 'Add', page: 'edit', contact: '', user: ''  });
-});
-
-/* POST Add page. */
-router.post('/add', function(req, res, next) 
-{
-
-  // Instantiate New Contact
-  let newContact = new Contact
-  ({
-    "FullName": req.body.FullName,
-    "ContactNumber": req.body.ContactNumber,
-    "EmailAddress": req.body.EmailAddress
-  });
-
-  //db.contacts.create()
-  Contact.create(newContact, (err) => {
-    if (err)
-    {
-      console.error(err);
-      res.end(err);
-    }
-
-    res.redirect('/contact-list');
-  });
-});
-
-/* Process Delete/:id page. */
-router.get('/delete/:id', function(req, res, next) 
 {
   res.redirect('/contact-list');
 });
