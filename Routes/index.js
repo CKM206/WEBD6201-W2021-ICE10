@@ -48,6 +48,9 @@ exports.router.get('/contact', function (req, res, next) {
 exports.router.get('/login', function (req, res, next) {
     res.render('index', { title: 'Login', page: 'login', user: '' });
 });
+exports.router.post('/login', function (req, res, next) {
+    res.redirect('/contact-list');
+});
 exports.router.get('/register', function (req, res, next) {
     res.render('index', { title: 'Register', page: 'register', user: '' });
 });
@@ -59,7 +62,7 @@ exports.router.get('/contact-list', function (req, res, next) {
         if (err) {
             return console.error(err);
         }
-        res.render('index', { title: 'Contact List', page: 'contact-list', user: '', contacts: contacts });
+        res.render('index', { title: 'Contact List', page: 'contact-list', user: 'temp', contacts: contacts });
     });
 });
 exports.router.get('/edit/:id', function (req, res, next) {
@@ -106,6 +109,13 @@ exports.router.post('/add', function (req, res, next) {
     });
 });
 exports.router.get('/delete/:id', function (req, res, next) {
-    res.redirect('/contact-list');
+    let id = req.params.id;
+    Contact.remove({ _id: id }, (err) => {
+        if (err) {
+            console.error(err);
+            res.end(err);
+        }
+        res.redirect('/contact-list');
+    });
 });
 //# sourceMappingURL=index.js.map

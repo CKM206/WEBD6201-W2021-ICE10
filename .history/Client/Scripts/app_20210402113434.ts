@@ -114,7 +114,7 @@ namespace core
     authGuard();
     
       $("a.delete").on("click", function (event) {
-        if (!confirm("Are you sure?")) {
+        if (confirm("Are you sure?")) {
           event.preventDefault();
           location.href = "/contact-list";
         }
@@ -162,7 +162,9 @@ namespace core
           // hide any error message
           messageArea.removeAttr("class").hide();
 
-          $('form').trigger('submit');
+          // redirect user to secure area - contact-list.html
+          //loadLink("contact-list"); // This is from before Express
+          location.href = "/contact-list";
         } 
         else 
         {
@@ -231,8 +233,6 @@ namespace core
       case "login":
         displayLogin();
         break;
-      case "register":
-        break;  
       case "logout":
         performLogout();
         break;  

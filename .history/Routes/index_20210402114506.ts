@@ -42,17 +42,16 @@ router.get('/contact', function(req, res, next)
 });
 
 /* GET Login page. */
+router.post('/login', function(req, res, next) 
+{
+  res.render('index', { title: 'Login', page: 'login', user: 'req.body.username' });
+});
+
+/* GET Login page. */
 router.get('/login', function(req, res, next) 
 {
   res.render('index', { title: 'Login', page: 'login', user: '' });
 });
-
-/* POST Login page. */
-router.post('/login', function(req, res, next) 
-{
-  res.redirect('/contact-list');
-});
-
 
 /* GET Register page. */
 router.get('/register', function(req, res, next) 

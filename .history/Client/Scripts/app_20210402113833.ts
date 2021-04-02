@@ -114,7 +114,7 @@ namespace core
     authGuard();
     
       $("a.delete").on("click", function (event) {
-        if (!confirm("Are you sure?")) {
+        if (confirm("Are you sure?")) {
           event.preventDefault();
           location.href = "/contact-list";
         }
@@ -231,8 +231,6 @@ namespace core
       case "login":
         displayLogin();
         break;
-      case "register":
-        break;  
       case "logout":
         performLogout();
         break;  

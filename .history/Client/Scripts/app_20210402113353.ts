@@ -114,17 +114,119 @@ namespace core
     authGuard();
     
       $("a.delete").on("click", function (event) {
-        if (!confirm("Are you sure?")) {
+        if (confirm("Are you sure?")) {
           event.preventDefault();
           location.href = "/contact-list";
         }
       });
 
+    // if (localStorage.length > 0) 
+    // {
+    //   let contactList = document.getElementById("contactList");
+
+    //   let data = "";
+
+    //   let keys = Object.keys(localStorage);
+
+    //   let index = 1;
+
+    //   for (const key of keys) {
+    //     let contactData = localStorage.getItem(key);
+
+    //     let contact = new core.Contact();
+    //     contact.deserialize(contactData);
+
+    //     data += `<tr>
+    //       <th scope="row" class="text-center">${index}</th>
+    //       <td>${contact.FullName}</td>
+    //       <td>${contact.ContactNumber}</td>
+    //       <td>${contact.EmailAddress}</td>
+    //       <td class="text-center"><button value="${key}" class="btn btn-primary btn-sm edit"><i class="fas fa-edit fa-sm"></i> Edit</button></td>
+    //       <td class="text-center"><button value="${key}" class="btn btn-danger btn-sm delete"><i class="fas fa-trash-alt fa-sm"></i> Delete</button></td>
+    //       </tr>`;
+
+    //     index++;
+    //   }
+
+    //   contactList.innerHTML = data;
+
+    //   $("button.edit").on("click", function () {
+    //     // Load the edit page, include the data to be passed
+    //     location.href = '/edit/' + $(this).val().toString();  // Load link + Data
+    //   });
+
+    // }
+    // $("#addButton").on("click", function () {
+    //   location.href = "/edit";
+    // });
   }
 
   function displayEdit(): void
   {
+    //   // Get the linkData
+    //   let key = $("body")[0].dataset.contactid;
+
+    //   console.log(key);
+
+    //   let contact = new core.Contact();
+
+    //   // check to ensure that the key is not empty
+    //   if(key != undefined && key != "")
+    //   {
+    //     // get contact info from localStorage
+    //     contact.deserialize(localStorage.getItem(key));
+
+    //     // display contact information in the form
+    //     $("#fullName").val(contact.FullName);
+    //     $("#contactNumber").val(contact.ContactNumber);
+    //     $("#emailAddress").val(contact.EmailAddress);
+    //   }
+    //   else
+    //   {
+    //     // modify the page so that it shows "Add Contact" in the header 
+    //     $("main>h1").text("Add Contact");
+    //     // modify edit button so that it shows "Add" as well as the appropriate icon
+    //     $("#editButton").html(`<i class="fas fa-plus-circle fa-lg"></i> Add`);
+    //   }
+
+    //   // form validation
        formValidation();
+      
+    //  $("#editButton").on("click", function() 
+    //  {
+    //    // check to see if key is empty
+    //    if (key == "") {
+    //      // create a new key
+    //      key = contact.FullName.substring(0, 1) + Date.now();
+    //    }
+
+    //    // copy contact info from form to contact object
+    //    contact.FullName = $("#fullName").val().toString();
+    //    contact.ContactNumber = $("#contactNumber").val().toString();
+    //    contact.EmailAddress = $("#emailAddress").val().toString();
+
+    //    // Only allow a new Contact if all info is present
+    //    if (contact.serialize()) 
+    //    {
+    //      // add the contact info to localStorage
+    //      localStorage.setItem(key, contact.serialize());
+    //      // return to the contact list
+    //    }
+
+    //    // Remove any link data
+    //    linkData = '';
+    //    location.href = "/contact-list";
+    //  });
+   
+
+      // $("#cancelButton").on("click", function()
+      // {
+      //   // Remove any link data
+      //   linkData = '';
+        
+      //   // return to the contact list
+      //   location.href = '/contact-list';
+      // });
   }
 
   function displayLogin(): void
@@ -162,7 +264,9 @@ namespace core
           // hide any error message
           messageArea.removeAttr("class").hide();
 
-          $('form').trigger('submit');
+          // redirect user to secure area - contact-list.html
+          //loadLink("contact-list"); // This is from before Express
+          location.href = "/contact-list";
         } 
         else 
         {
@@ -231,8 +335,6 @@ namespace core
       case "login":
         displayLogin();
         break;
-      case "register":
-        break;  
       case "logout":
         performLogout();
         break;  

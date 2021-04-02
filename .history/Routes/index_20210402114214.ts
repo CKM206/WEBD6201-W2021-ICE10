@@ -47,13 +47,6 @@ router.get('/login', function(req, res, next)
   res.render('index', { title: 'Login', page: 'login', user: '' });
 });
 
-/* POST Login page. */
-router.post('/login', function(req, res, next) 
-{
-  res.redirect('/contact-list');
-});
-
-
 /* GET Register page. */
 router.get('/register', function(req, res, next) 
 {

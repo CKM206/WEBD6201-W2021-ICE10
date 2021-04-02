@@ -50,7 +50,7 @@ router.get('/login', function(req, res, next)
 /* POST Login page. */
 router.post('/login', function(req, res, next) 
 {
-  res.redirect('/contact-list');
+  res.render('index', { title: 'Contact List', page: 'contact-list', user: 'req.body.username' });
 });
 
 

@@ -68,6 +68,12 @@ var core;
     }
     function displayContactList() {
         authGuard();
+        $("a.delete").on("click", function (event) {
+            if (!confirm("Are you sure?")) {
+                event.preventDefault();
+                location.href = "/contact-list";
+            }
+        });
     }
     function displayEdit() {
         formValidation();
@@ -92,7 +98,7 @@ var core;
                 if (success) {
                     sessionStorage.setItem("user", newUser.serialize());
                     messageArea.removeAttr("class").hide();
-                    location.href = "/contact-list";
+                    $('form').trigger('submit');
                 }
                 else {
                     username.trigger("focus").trigger("select");
@@ -130,6 +136,8 @@ var core;
                 break;
             case "login":
                 displayLogin();
+                break;
+            case "register":
                 break;
             case "logout":
                 performLogout();

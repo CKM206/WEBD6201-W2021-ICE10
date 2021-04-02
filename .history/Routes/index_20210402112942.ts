@@ -47,13 +47,6 @@ router.get('/login', function(req, res, next)
   res.render('index', { title: 'Login', page: 'login', user: '' });
 });
 
-/* POST Login page. */
-router.post('/login', function(req, res, next) 
-{
-  res.redirect('/contact-list');
-});
-
-
 /* GET Register page. */
 router.get('/register', function(req, res, next) 
 {
@@ -80,7 +73,7 @@ router.get('/contact-list', function(req, res, next)
     }
     // console.log(contacts);
     // res.json(contacts);
-    res.render('index', { title: 'Contact List', page: 'contact-list', user: 'temp', contacts: contacts });
+    res.render('index', { title: 'Contact List', page: 'contact-list', user: '', contacts: contacts });
     
   });
 
@@ -163,7 +156,6 @@ router.get('/delete/:id', function(req, res, next)
 {
   let id = req.params.id;
 
-  // db.contacts.remove()
   Contact.remove({_id: id}, (err) => {
     if (err)
     {
