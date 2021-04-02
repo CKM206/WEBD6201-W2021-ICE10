@@ -3,7 +3,7 @@ export const router = express.Router();
 
 // Contact Model
 import * as ContactModel from '../Models/contact';
-const Contact =  ContactModel.Model;  // Contact Alias
+const Contact =  ContactModel.Model;
 
 /* GET Home page. */
 router.get('/', function(req, res, next) 
@@ -90,6 +90,3 @@ router.get('/edit/:id', function(req, res, next)
   let id = req.params.id;
   res.render('edit', { title: 'Edit', page: 'edit', contactID: id, user: 'admin'  });
 });
-
-
-

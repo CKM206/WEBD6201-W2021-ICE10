@@ -3,22 +3,21 @@
 /**
  * Module dependencies.
  */
-import * as AppConfig from './app';
+import * as app from './app';
+let debug = require('debug')('week10:server');
 import http from 'http';
 import createError from 'http-errors';
-import debug from 'debug';
-debug('week10:server');
 
 /**
  * Get port from environment and store in Express.
  */
 let port = normalizePort(process.env.PORT || '3000');
-AppConfig.app.set('port', port);
+app.app.set('port', port);
 
 /**
  * Create HTTP server.
  */
-const server = http.createServer(AppConfig.app);
+const server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.

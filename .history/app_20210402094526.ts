@@ -21,7 +21,7 @@ export const app = express();
 /**
  * DB Configuration
  */
-import * as DBConfig from './Config/db';
+import DBConfig = require('./Config/db');
 mongoose.connect(DBConfig.Path, {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;
 
@@ -43,7 +43,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'Client')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 
-app.use('/', indexRouter.router);
+app.use('/', indexRouter);
 
 /**
  * Catch 404 and forward to error handler
@@ -68,3 +68,5 @@ app.use(function(err: createError.HttpError, req: express.Request,
   res.status(err.status || 500);
   res.render('error', { message: message, error: error, title: 'ERROR', page: 'error'});
 });
+
+module.exports = app;

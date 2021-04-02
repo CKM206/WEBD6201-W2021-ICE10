@@ -2,8 +2,8 @@ import express from 'express';
 export const router = express.Router();
 
 // Contact Model
-import * as ContactModel from '../Models/contact';
-const Contact =  ContactModel.Model;  // Contact Alias
+import ContactModel = require('../Models/contact');
+const Contact =  ContactModel.Model;
 
 /* GET Home page. */
 router.get('/', function(req, res, next) 
@@ -91,5 +91,4 @@ router.get('/edit/:id', function(req, res, next)
   res.render('edit', { title: 'Edit', page: 'edit', contactID: id, user: 'admin'  });
 });
 
-
-
+module.exports = router;

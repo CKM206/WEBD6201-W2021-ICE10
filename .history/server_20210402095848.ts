@@ -6,8 +6,7 @@
 import * as AppConfig from './app';
 import http from 'http';
 import createError from 'http-errors';
-import debug from 'debug';
-debug('week10:server');
+let debug = require('debug')('week10:server');
 
 /**
  * Get port from environment and store in Express.
