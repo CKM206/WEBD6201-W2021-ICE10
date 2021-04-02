@@ -59,8 +59,7 @@ exports.router.get('/contact-list', function (req, res, next) {
         if (err) {
             return console.error(err);
         }
-        console.log(contacts);
-        res.json(contacts);
+        res.render('index', { title: 'Contact List', page: 'contact-list', user: 'admin', contacts: contacts });
     });
 });
 exports.router.get('/edit', function (req, res, next) {

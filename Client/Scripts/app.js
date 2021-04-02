@@ -68,39 +68,6 @@ var core;
     }
     function displayContactList() {
         authGuard();
-        if (localStorage.length > 0) {
-            let contactList = document.getElementById("contactList");
-            let data = "";
-            let keys = Object.keys(localStorage);
-            let index = 1;
-            for (const key of keys) {
-                let contactData = localStorage.getItem(key);
-                let contact = new core.Contact();
-                contact.deserialize(contactData);
-                data += `<tr>
-          <th scope="row" class="text-center">${index}</th>
-          <td>${contact.FullName}</td>
-          <td>${contact.ContactNumber}</td>
-          <td>${contact.EmailAddress}</td>
-          <td class="text-center"><button value="${key}" class="btn btn-primary btn-sm edit"><i class="fas fa-edit fa-sm"></i> Edit</button></td>
-          <td class="text-center"><button value="${key}" class="btn btn-danger btn-sm delete"><i class="fas fa-trash-alt fa-sm"></i> Delete</button></td>
-          </tr>`;
-                index++;
-            }
-            contactList.innerHTML = data;
-            $("button.edit").on("click", function () {
-                location.href = '/edit/' + $(this).val().toString();
-            });
-            $("button.delete").on("click", function () {
-                if (confirm("Are you sure?")) {
-                    localStorage.removeItem($(this).val().toString());
-                }
-                location.href = "/contact-list";
-            });
-        }
-        $("#addButton").on("click", function () {
-            location.href = "/edit";
-        });
     }
     function displayEdit() {
         let key = $("body")[0].dataset.contactid;

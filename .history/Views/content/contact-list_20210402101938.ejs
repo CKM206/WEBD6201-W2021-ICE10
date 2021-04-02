@@ -25,7 +25,7 @@
                     <td><%= contacts[count].ContactNumber %></td>
                     <td><%= contacts[count].EmailAddress %></td>
                     <td class="text-center"><a href="/edit/:<%= contacts[count]._id%>" class="btn btn-primary btn-sm edit"><i class="fas fa-edit fa-sm"></i> Edit</a></td>
-                    <td class="text-center"><a href="/delete:<%= contacts[count]._id%>" class="btn btn-danger btn-sm delete"><i class="fas fa-trash-alt fa-sm"></i> Delete</a></td>
+                    <td class="text-center"><a href="/delete" class="btn btn-danger btn-sm delete"><i class="fas fa-trash-alt fa-sm"></i> Delete</a></td>
                   </tr>              
                 <% }                                                       %>
               </tbody>

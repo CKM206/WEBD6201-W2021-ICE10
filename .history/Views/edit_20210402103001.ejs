@@ -1,14 +1,9 @@
-<!-- 
-    Hide the Error Stack, leaving here just in case we ever need it (Fully commented out)
-    <pre><%# error.stack %></pre> 
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error: <%= error.statusCode %> - <%= message %></title>
+    <title><%= title %></title>
     <!-- CSS Section -->
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/@fortawesome/fontawesome-free/css/all.min.css">
@@ -16,7 +11,7 @@
     <!-- Scripts that run before Page loads -->
 
 </head>
-<body>
+<body id="<%= page %>" data-contactID="<%= contactID %>">
     <!-- Main Header -->
     <header>
       <%- include('components/header'); -%>
@@ -24,14 +19,7 @@
 
     <!-- Main Content -->
     <main class="container">
-      <% if (error.statusCode == '404') 
-         { %> 
-      <%-  include('content/404'); -%> 
-      <% } 
-         else 
-         { %>
-           <h1>Error: <%= error.statusCode %> - Page <%= message %></h1>
-      <% } %>
+      <%- include('content/' + page); -%>
     </main>
     <!-- Main Footer -->
     <footer>
@@ -39,9 +27,11 @@
     </footer>
 
     <!-- Script Section-->
-    <script src="./jquery/dist/jquery.min.js"></script>
-    <script src="./bootstrap/dist/js/bootstrap.bundle.min.js"></script>  
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/Scripts/contact.js"></script>
+    <script src="/Scripts/user.js"></script>   
+    <script src="/Scripts/app.js"></script>  
 
 </body>
 </html>
-

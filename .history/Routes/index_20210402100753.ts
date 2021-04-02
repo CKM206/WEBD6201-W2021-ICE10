@@ -71,8 +71,8 @@ router.get('/contact-list', function(req, res, next)
     {
       return console.error(err);
     }
-    // console.log(contacts);
-    // res.json(contacts);
+    console.log(contacts);
+    res.json(contacts);
     res.render('index', { title: 'Contact List', page: 'contact-list', user: 'admin', contacts: contacts });
     
   });
